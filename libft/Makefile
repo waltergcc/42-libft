@@ -1,5 +1,5 @@
 
-NAME = libft.s
+NAME = libft.a
 
 PART1 = src/ft_tolower.c src/ft_toupper.c src/ft_isprint.c src/ft_isascii.c \
 		src/ft_isalnum.c src/ft_isdigit.c src/ft_isalpha.c src/ft_atoi.c \
@@ -19,6 +19,10 @@ PART2 = src/ft_putchar.c src/ft_putstr.c src/ft_putnbr.c src/ft_itoa.c \
 BONUS = src/ft_lstnew.c src/ft_lstadd.c src/ft_lstdelone.c src/ft_lstdel.c \
 		src/ft_lstiter.c src/ft_lstmap.c
 
+T1 = tests/part1.c
+T2 = tests/part2.c
+T3 = tests/bonus.c
+
 SRC = ${PART1} ${PART2} ${BONUS}
 
 OBJS = ${SRC:.c=.o}
@@ -28,9 +32,10 @@ HEADER = include/libft.h
 CC		= gcc
 RM		= rm -f
 CFLAGS = -Wall -Wextra -Werror
+INCLUDE = -I include
 
 .c.o:
-		${CC} ${CFLAGS} -I include -c $< -o ${<:.c=.o}
+		${CC} ${CFLAGS} ${INCLUDE} -c $< -o ${<:.c=.o}
 
 $(NAME): ${OBJS}
 		ar rcs ${NAME} ${OBJS} ${HEADER}
@@ -45,4 +50,12 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+tests:
+		${CC} ${CFLAGS} ${INCLUDE} ${T1} ${NAME} -o t1
+		${CC} ${CFLAGS} ${INCLUDE} ${T2} ${NAME} -o t2
+		${CC} ${CFLAGS} ${INCLUDE} ${T3} ${NAME} -o t3
+
+tclean:
+		rm t1 t2 t3 output.txt
+
+.PHONY: all clean fclean re tests tclean

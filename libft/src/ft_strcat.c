@@ -6,7 +6,7 @@
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 09:45:06 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/03/18 17:59:44 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/03/23 01:42:53 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,3 +24,4 @@ char	*ft_strcat(char *dest, const char *src)
 	dest[i] = '\0';
 	return (dest);
 }
+
