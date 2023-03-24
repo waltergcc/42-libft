@@ -6,299 +6,443 @@
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:19:27 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/03/21 02:19:03 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/03/24 00:12:52 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-#include <ctype.h>
-#include <fcntl.h>
-
-// used with ft_strmap
-static char	ft_tolower_wrapper(char c) 
-{
-	int i = ft_tolower(c);
-	return (i);
-}
-
-// used with ft_striter
-static void	ft_toupper_wrapper(char *c) 
-{
-    *c = ft_toupper(*c);
-}
-
-// used with ft_strmapi
-static char	ft_lowercase_plus_index(unsigned int i, char c)
-{
-	return (ft_tolower(c) + (i + 1));
-}
-
-// used with ft_striteri
-static void	ft_replace_with_i(unsigned int i, char *c)
-{
-    *c = i + '0';
-}
+#include "tests.h"
 
 int	main(void)
 {
 	// file variable
-	int	fd; // putchar_fd, putstr_fd, putendl_fd, ft_putnbr_fd
-	char	buffer[1]; // putchar_fd, putstr_fd, putendl_fd, ft_putnbr_fd
-	ssize_t bytes_read; // putchar_fd, putstr_fd, putendl_fd, ft_putnbr_fd
+	int		fd;
+	char	buffer[1];
+	ssize_t bytes_read;
+
+	char	*empty[9];
+	char	spaceChar = ' ';
+	char	commonChars[9] = {'a', '5', '@', ' ', 'j', '!', 'h', '*', '0'};
+	char	strs1[9][20] ={"Programming ", "languages ", "like ", "Python ", "Java ", "and ", "C++ ", "are ", "used "};
+	char	strs2[9][20] = {"robotics ", "is ", "the ", "future ", "of ", "technology ", "and ", "innovation ", "in "};
+	char	strs3[9][20] = {"fIeLdS", "LIKE", "MANUfactURING", "mediciNE", "sPACe", "ExPlOrAtIoN", "AND", "mOre", "!"};
+	char	strs4[9][20] =  {" 	mm", "an 		", " in ", "	on	", "re st", " in", " ", " 0  ", " . "};
+	char	cleaned[9][60] = {"I ", "am ", "happy ", "to ", "learn ", "new ", "things ", "and ", "grow "};
+	char	frases[9][40] = {"The quick brown fox", "A lazy dog", "Star Wars", "Science Fiction movie", "Rock Music", "Artificial Intelligence is cool", "Hey Bro", "It's a nice day", "You're welcome"}; 
+	int		nbrs[9] = {1, -42, 0, 42, 2147483648, 2147483647, 5678, 100000, -100000};
 	
-	// empty variables
-	char	*empty; // itoa, memalloc, memdel, strdel, strmap, strmapi, strsub
+	// Prints auxiliar
+	size_t	numberCases = 0;
+	size_t	startCase = 1;
+	int		printAll = 0;
+	int		newlinesBefore = 0;
+	int		newlinesAfter = 3;
+	int		newlinesBetween = 4;
+	char	subjectsLine = '=';
+	char	startEndLine = '*';
 
-	// variables that receive values
-	int		n = -1234; // putnbr, itoa, ft_putnbr_fd
-	char	a = 'a'; // putchar, putchar_fd
-	char	b = '*'; // strsplit
-	char	str_1[20] = "Hello"; // putstr, strjoin, striter, striteri
-	char	str_2[20] = "World"; // strjoin, strequ, putendl, putstr_fd
-	char	str_3[25] = "words*to**be****splitted"; // strsplit, strsub
-	char	str_4[6] = "Hello"; // strclr
-	char	str_5[6] = "WORLD"; // strclr, strmap, strmapi, strequ
-	char	str_6[30] = " without.spaces  "; // strtrim, putendl_fd
+	// begin test
+	remove("output.txt");
+	insertHeadline("PART II", startEndLine, 1, 1);
 
-	// ranges
-	int	n_memalloc = 5; // memalloc
-	int	n_strnew = 5; // strnew
-	int	n_strclr = ft_strlen(str_4); // strclr
-	int	n_strnequ = 1; // strnequ
-	size_t	len_strsub = 2; // strsub
-	unsigned int	start_strsub = 10; // strsub
+	numberCases = getCaseNumbers(startCase);
+
+	PressKeyReadControl(&printAll);
+	printf("\n");
 
 	// putchar
-	ft_putstr("\n===== putchar =====\n\n");
-	ft_putchar(a);
-	
+	insertHeadline("putchar", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
+	{
+		printf("  Target: Print %s%c%s\n", BLU, commonChars[i], GRN);
+		ft_putstr("  Remake: ");
+		ft_putchar(commonChars[i]);
+		linesBetweenCases(newlinesBetween);
+	}
 
+	if (!printAll)
+		PressKeyReadControl(&printAll);
 	// putstr
-	ft_putstr("\n\n===== putstr =====\n\n");
-	ft_putstr(str_1);
-	
+	insertHeadline("putstr", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
+	{
+		printf("  Target: Print %s%s%s\n", BLU, strs1[i], GRN);
+		ft_putstr("  Remake: ");
+		ft_putstr(strs1[i]);
+		linesBetweenCases(newlinesBetween);
+	}
 
+	if (!printAll)
+		PressKeyReadControl(&printAll);
 	// putnbr
-	ft_putstr("\n\n===== putnbr =====\n\n");
-	ft_putnbr(n);
-	
+	insertHeadline("putnbr", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
+	{
+		printf("  Target: Print %s%d%s\n", BLU, nbrs[i], GRN);
+		ft_putstr("  Remake: ");
+		ft_putnbr(nbrs[i]);
+		linesBetweenCases(newlinesBetween);
+	}
 
+	if (!printAll)
+		PressKeyReadControl(&printAll);	
 	// putendl
-	ft_putstr("\n\n===== putendl =====\n\n");
-	ft_putendl(str_2);
+	insertHeadline("putendl", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
+	{
+		printf("  Target: Print %s%s%s with a new line%s\n", BLU, strs1[i], STD, GRN);
+		ft_putstr("  Remake: ");
+		ft_putendl(strs1[i]);
+		linesBetweenCases(newlinesBetween);
+	}
 
+	if (!printAll)
+		PressKeyReadControl(&printAll);
 	// itoa
-	ft_putstr("\n===== itoa =====\n\n");
-	empty = ft_itoa(n);
-	ft_putstr(empty);
-	
-	free(empty);
+	insertHeadline("itoa", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
+	{
+		printf("  Target: Store %s%d%s in an array%s\n", BLU, nbrs[i], STD, GRN);
+		empty[i] = ft_itoa(nbrs[i]);
+		ft_putstr("  Remake: ");
+		ft_putstr(empty[i]);
+		linesBetweenCases(newlinesBetween);
+	}
+	for (size_t i = 0; i < numberCases; i++)
+		free(empty[i]);
 
+	if (!printAll)
+		PressKeyReadControl(&printAll);
 	// strjoin
-	ft_putstr("\n\n===== strjoin =====\n\n");
-	empty = ft_strjoin(str_1, str_2);
-	ft_putstr(empty);
-	free(empty);
+	insertHeadline("strjoin", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
+	{
+		printf("  Target: Combine %s%s%s with %s%s%s\n", BLU, strs1[i], STD, BLU, strs2[i], GRN);
+		empty[i] = ft_strjoin(strs1[i], strs2[i]);
+		ft_putstr("  Remake: ");
+		ft_putstr(empty[i]);
+		linesBetweenCases(newlinesBetween);
+	}
+	for (size_t i = 0; i < numberCases; i++)
+		free(empty[i]);
 
+	if (!printAll)
+		PressKeyReadControl(&printAll);
 	// strsplit
-	char	**words = ft_strsplit(str_3, b);
-	ft_putstr("\n\n===== strsplit =====\n\n");
-	for (int i = 0; words[i] != NULL; i++)
+	insertHeadline("strsplit", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
 	{
-		ft_putstr("[");
-		ft_putstr(words[i]);
-		free(words[i]);
-		ft_putstr("]");
+		char	**words = ft_strsplit(frases[i], spaceChar);
+		printf("  Target: Split %s%s%s with '%c'%s\n", BLU, frases[i], STD, spaceChar, GRN);
+		ft_putstr("  Remake: ");
+		for (size_t j = 0; words[j] != NULL; j++)
+		{
+			printf("[%s]", words[j]);
+			free(words[j]);
+		}
+		free(words);
+		linesBetweenCases(newlinesBetween);
 	}
-	free(words);
 
+	if (!printAll)
+		PressKeyReadControl(&printAll);
 	// memalloc
-	empty = ft_memalloc(n_memalloc);
-	ft_putstr("\n\n===== memalloc =====\n\n");
-	for (int i = 0; i < n_memalloc; i++)
+	insertHeadline("memalloc", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
 	{
-		ft_putstr("[");
-        ft_putnbr(empty[i]);
-		ft_putstr("]");
+		printf("  Target: Alloc memory of size %s%lu%s\n", BLU, i + 1, GRN);
+		empty[i] = ft_memalloc(i + 1);
+		ft_putstr("  Remake: ");
+		for (size_t j = 0; j < i + 1; j++)
+			printf("[%s]", empty[j]);
+		linesBetweenCases(newlinesBetween);
 	}
-	
+
+	if (!printAll)
+		PressKeyReadControl(&printAll);
 	// memdel
-	ft_putstr("\n\n===== memdel =====\n\n");
-	printf("%p > ", (void*)empty);
-	ft_memdel((void **) &empty);
-	printf("%p\n", (void*)empty);
+	insertHeadline("memdel", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
+	{
+		printf("  Target: Erase memory in %s%p%s\n", BLU, (void*)empty[i], GRN);
+		printf("  Remake: %p > ", (void*)empty[i]);
+		ft_memdel((void **) &empty[i]);
+		printf("%p", (void*)empty[i]);
+		linesBetweenCases(newlinesBetween);
+	}
 
+	if (!printAll)
+		PressKeyReadControl(&printAll);
 	// strnew
-	empty = ft_strnew(n_strnew);
-	ft_putstr("\n===== strnew =====\n\n");
-	for (int i = 0; i < n_strnew; i++)
+	insertHeadline("strnew", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
 	{
-		ft_putstr("[");
-        ft_putnbr(empty[i]);
-		ft_putstr("]");
+		printf("  Target: Create a str of size %s%lu%s\n", BLU, i + 1, GRN);
+		empty[i] = ft_strnew(i + 1);
+		ft_putstr("  Remake: ");
+		for (size_t j = 0; j < i + 1; j++)
+			printf("[%s]", empty[j]);
+		linesBetweenCases(newlinesBetween);
 	}
 	
+	if (!printAll)
+		PressKeyReadControl(&printAll);
 	// strdel
-	ft_putstr("\n\n===== strdel =====\n\n");
-	printf("%p > ", empty);
-	ft_strdel(&empty);
-	printf("%p\n", empty);
-
-	// strclr
-	ft_putstr("\n===== strclr =====\n\n");
-	ft_putstr(str_4);
-	ft_putstr(" > ");
-	ft_strclr(str_4);
-	for (int i = 0; i < n_strclr; i++)
+	insertHeadline("strdel", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
 	{
-		ft_putstr("[");
-        ft_putnbr(str_4[i]);
-		ft_putstr("]");
+		printf("  Target: Erase string in %s%p%s\n", BLU, (void*)empty[i], GRN);
+		printf("  Remake: %p > ", empty[i]);
+		ft_strdel(&empty[i]);
+		printf("%p", empty[i]);
+		linesBetweenCases(newlinesBetween);
 	}
 
+	if (!printAll)
+		PressKeyReadControl(&printAll);
+	// strclr
+	insertHeadline("strclr", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
+	{
+		size_t	len = ft_strlen(cleaned[i]);
+		printf("  Target: Clear the string '%s%s%s'%s\n", BLU, cleaned[i], STD, GRN);
+		ft_strclr(cleaned[i]);
+		ft_putstr("  Remake: ");
+		for (size_t j = 0; j < len; j++)
+			printf("[%d]", cleaned[i][j]);
+		linesBetweenCases(newlinesBetween);
+	}
+
+	if (!printAll)
+		PressKeyReadControl(&printAll);
 	// striter
-	ft_putstr("\n\n===== striter =====\n\n");
-	ft_striter(str_1, ft_toupper_wrapper);
-	ft_putstr(str_1);
+	insertHeadline("striter", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
+	{
+		printf("  Target: Iterate with %sft_toupper_wrapper%s\n", BLU, GRN);
+		printf("  Remake: %s > ", strs1[i]);
+		ft_striter(strs1[i], ft_toupper_wrapper);
+		printf("%s", strs1[i]);
+		linesBetweenCases(newlinesBetween);
+	}
 
+	if (!printAll)
+		PressKeyReadControl(&printAll);
 	// striteri
-	ft_putstr("\n\n===== striteri =====\n\n");
-	ft_putstr(str_1);
-	ft_putstr(" > ");
-	ft_striteri(str_1, ft_replace_with_i);
-	ft_putstr(str_1);
+	insertHeadline("striteri", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
+	{
+		printf("  Target: Iterate with %sft_replace_with_i%s\n", BLU, GRN);
+		printf("  Remake: %s > ", strs1[i]);
+		ft_striteri(strs1[i], ft_replace_with_i);
+		printf("%s", strs1[i]);
+		linesBetweenCases(newlinesBetween);
+	}
 	
+	if (!printAll)
+		PressKeyReadControl(&printAll);
 	// strmap
-	ft_putstr("\n\n===== strmap =====\n\n");
-	ft_putstr(str_5);
-	ft_putstr(" > ");
-	empty = ft_strmap(str_5, ft_tolower_wrapper);
-	ft_putstr(empty);
-	free(empty);
+	insertHeadline("strmap", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
+	{
+		printf("  Target: Create new string iterating with %sft_tolower_wrapper%s\n", BLU, GRN);
+		printf("  Remake: %s > ", strs3[i]);
+		empty[i] = ft_strmap(strs3[i], ft_tolower_wrapper);
+		printf("%s", empty[i]);
+		free(empty[i]);
+		linesBetweenCases(newlinesBetween);
+	}
 
+	if (!printAll)
+		PressKeyReadControl(&printAll);
 	// strmapi
-	ft_putstr("\n\n===== strmapi =====\n\n");
-	ft_putstr(str_5);
-	ft_putstr(" > ");
-	empty = ft_strmapi(str_5, ft_lowercase_plus_index);
-	ft_putstr(empty);
-	free(empty);
+	insertHeadline("strmapi", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
+	{
+		printf("  Target: Create new string iterating with %sft_lowercase_plus_index%s\n", BLU, GRN);
+		printf("  Remake: %s > ", strs3[i]);
+		empty[i] = ft_strmapi(strs3[i], ft_lowercase_plus_index);
+		printf("%s", empty[i]);
+		free(empty[i]);
+		linesBetweenCases(newlinesBetween);
+	}
 
+	if (!printAll)
+		PressKeyReadControl(&printAll);
 	// strequ
-	ft_putstr("\n\n===== strequ =====\n\n");
-	if (ft_strequ(str_2, str_5))
-		printf("%s is equal to %s\n", str_2, str_5);
-	else
-		printf("%s is not equal to %s\n", str_2, str_5);
+	insertHeadline("strequ", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
+	{
+		printf("  Target: Check if %s%s%s is equal to %s%s%s\n", BLU, strs2[i], STD, BLU, strs3[i], GRN);
+		if (ft_strequ(strs2[i], strs3[i]))
+			printf("  Remake: They are equals");
+		else
+			printf("  Remake: They aren't equals");
+		linesBetweenCases(newlinesBetween);
+	}
 
+	if (!printAll)
+		PressKeyReadControl(&printAll);
 	// strnequ
-	ft_putstr("\n===== strnequ =====\n\n");
-	if (ft_strnequ(str_2, str_5, n_strnequ))
-		printf("%s is equal to %s at positon %d\n", str_2, str_5, n_strnequ);
-	else
-		printf("%s is not equal to %s at positon %d\n", str_2, str_5, n_strnequ);
+	insertHeadline("strnequ", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
+	{
+		printf("  Target: Check if %s%s%s is equal to %s%s%s until position %s%lu%s\n", \
+		BLU, strs2[i], STD, BLU, strs3[i], STD, BLU, i, GRN);
+		if (ft_strnequ(strs2[i], strs3[i], i))
+			printf("  Remake: They are equals");
+		else
+			printf("  Remake: They aren't equals");
+		linesBetweenCases(newlinesBetween);
+	}
 
+	if (!printAll)
+		PressKeyReadControl(&printAll);
 	// strsub
-	ft_putstr("\n===== strsub =====\n\n");
-	ft_putstr(str_3);
-	ft_putstr(" > ");
-	empty = ft_strsub(str_3, start_strsub, len_strsub);
-	ft_putstr(empty);
-	free(empty);
+	insertHeadline("strsub", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
+	{
+		printf("  Target: Get a substring of %s%s%s\n", BLU, frases[i], GRN);
+		printf("  Remake: %s > ", frases[i]);
+		empty[i] = ft_strsub(frases[i], i, i * i);
+		printf("%s", empty[i]);
+		free(empty[i]);
+		linesBetweenCases(newlinesBetween);
+	}
 
+	if (!printAll)
+		PressKeyReadControl(&printAll);
 	// strtrim
-	ft_putstr("\n\n===== strtrim =====\n\n");
-	ft_putstr("[");
-	ft_putstr(str_6);
-	ft_putstr("]");
-	ft_putstr(" > ");
-	empty = ft_strtrim(str_6);
-	ft_putstr(empty);
-	
-	free(empty);
+	insertHeadline("strtrim", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
+	{
+		printf("  Target: Remove spaces of [%s%s%s] from start and end%s\n", BLU, strs4[i], STD, GRN);
+		printf("  Remake: %s > ", strs4[i]);
+		empty[i] = ft_strtrim(strs4[i]);
+		printf("%s", empty[i]);
+		free(empty[i]);
+		linesBetweenCases(newlinesBetween);
+	}
 
+	if (!printAll)
+		PressKeyReadControl(&printAll);
 	// putchar_fd
-	ft_putstr("\n\n===== putchar_fd =====\n\n");
-    fd = open("output.txt", O_WRONLY | O_CREAT, 0644);
-    if (fd == -1)
-    {
-        perror("open");
-        return (1);
-    }
-	ft_putchar_fd(a, fd);
-	close(fd);
-	fd = open("output.txt", O_RDONLY);
-    if (fd == -1)
-    {
-        perror("open");
-        return (1);
-    }
-	while ((bytes_read = read(fd, buffer, 1)) > 0)
-		ft_putchar(*buffer);
-	close(fd);
-	
+	insertHeadline("putchar_fd", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
+	{
+		printf("  Target: Write %s%c%s in a file%s\n", BLU, commonChars[i], STD, GRN);
+		fd = open("output.txt", O_WRONLY | O_CREAT, 0644);
+		if (fd == -1)
+		{
+			perror("open");
+			return (1);
+		}
+		ft_putchar_fd(commonChars[i], fd);
+		close(fd);
+		fd = open("output.txt", O_RDONLY);
+		if (fd == -1)
+		{
+			perror("open");
+			return (1);
+		}
+		printf("  Remake: output.txt > ");
+		while ((bytes_read = read(fd, buffer, 1)) > 0)
+			printf("%c", *buffer);
+		close(fd);
+		remove("output.txt");
+		linesBetweenCases(newlinesBetween);
+	}
+	remove("output.txt");
 
-		// ft_putnbr_fd
-	ft_putstr("\n\n===== ft_putnbr_fd =====\n\n");
-    fd = open("output.txt", O_WRONLY | O_CREAT, 0644);
-    if (fd == -1)
-    {
-        perror("open");
-        return (1);
-    }
-	ft_putnbr_fd(n, fd);
-	close(fd);
-	fd = open("output.txt", O_RDONLY);
-    if (fd == -1)
-    {
-        perror("open");
-        return (1);
-    }
-	while ((bytes_read = read(fd, buffer, 1)) > 0)
-		ft_putchar(*buffer);
-	close(fd);
-	
+	if (!printAll)
+		PressKeyReadControl(&printAll);
+	// ft_putnbr_fd
+	insertHeadline("ft_putnbr_fd", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
+	{
+		printf("  Target: Write %s%d%s in a file%s\n", BLU, nbrs[i], STD, GRN);
+		fd = open("output.txt", O_WRONLY | O_CREAT, 0644);
+		if (fd == -1)
+		{
+			perror("open");
+			return (1);
+		}
+		ft_putnbr_fd(nbrs[i], fd);
+		close(fd);
+		fd = open("output.txt", O_RDONLY);
+		if (fd == -1)
+		{
+			perror("open");
+			return (1);
+		}
+		printf("  Remake: output.txt > ");
+		while ((bytes_read = read(fd, buffer, 1)) > 0)
+			printf("%c", *buffer);
+		close(fd);
+		remove("output.txt");
+		linesBetweenCases(newlinesBetween);
+	}
+	remove("output.txt");
 
+	if (!printAll)
+		PressKeyReadControl(&printAll);
 	// putstr_fd
-	ft_putstr("\n\n===== putstr_fd =====\n\n");
-    fd = open("output.txt", O_WRONLY | O_CREAT, 0644);
-    if (fd == -1)
-    {
-        perror("open");
-        return (1);
-    }
-	ft_putstr_fd(str_2, fd);
-	close(fd);
-	fd = open("output.txt", O_RDONLY);
-    if (fd == -1)
-    {
-        perror("open");
-        return (1);
-    }
-	while ((bytes_read = read(fd, buffer, 1)) > 0)
-		ft_putchar(*buffer);
-	close(fd);
-	
+	insertHeadline("putstr_fd", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
+	{
+		printf("  Target: Write %s%s%s in a file%s\n", BLU, frases[i], STD, GRN);
+		fd = open("output.txt", O_WRONLY | O_CREAT, 0644);
+		if (fd == -1)
+		{
+			perror("open");
+			return (1);
+		}
+		ft_putstr_fd(frases[i], fd);
+		close(fd);
+		fd = open("output.txt", O_RDONLY);
+		if (fd == -1)
+		{
+			perror("open");
+			return (1);
+		}
+		printf("  Remake: output.txt > ");
+		while ((bytes_read = read(fd, buffer, 1)) > 0)
+			printf("%c", *buffer);
+		close(fd);
+		remove("output.txt");
+		linesBetweenCases(newlinesBetween);
+	}
+	remove("output.txt");
 
+	if (!printAll)
+		PressKeyReadControl(&printAll);
 	// putendl_fd
-	ft_putstr("\n\n===== putendl_fd =====\n\n");
-    fd = open("output.txt", O_WRONLY | O_CREAT, 0644);
-    if (fd == -1)
-    {
-        perror("open");
-        return (1);
-    }
-	ft_putendl_fd(str_6, fd);
-	close(fd);
-	fd = open("output.txt", O_RDONLY);
-    if (fd == -1)
-    {
-        perror("open");
-        return (1);
-    }
-	while ((bytes_read = read(fd, buffer, 1)) > 0)
-		ft_putchar(*buffer);
-	close(fd);
-	ft_putstr("\n");
+	insertHeadline("putendl_fd", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
+	{
+		printf("  Target: Write %s%s%s in a file with a new line%s\n", BLU, frases[i], STD, GRN);
+		fd = open("output.txt", O_WRONLY | O_CREAT, 0644);
+		if (fd == -1)
+		{
+			perror("open");
+			return (1);
+		}
+		ft_putendl_fd(strs2[i], fd);
+		close(fd);
+		fd = open("output.txt", O_RDONLY);
+		if (fd == -1)
+		{
+			perror("open");
+			return (1);
+		}
+		printf("  Remake: output.txt > ");
+		while ((bytes_read = read(fd, buffer, 1)) > 0)
+			printf("%c", *buffer);
+		close(fd);
+		remove("output.txt");
+		linesBetweenCases(newlinesBetween);
+	}
+	remove("output.txt");
+
+	insertHeadline("END", startEndLine, 0, 1);
 }

@@ -56,6 +56,6 @@ tests:
 		${CC} ${CFLAGS} ${INCLUDE} ${T3} ${NAME} -o t3
 
 tclean:
-		rm t1 t2 t3 output.txt
+		rm t1 t2 t3
 
 .PHONY: all clean fclean re tests tclean

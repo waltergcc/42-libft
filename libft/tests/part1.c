@@ -6,7 +6,7 @@
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:19:27 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/03/23 02:39:45 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/03/24 00:13:07 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,31 +35,22 @@ int	main(void)
 	size_t	temp;
 
 	// Prints auxiliar
-	size_t		numberCases = 0;
+	size_t	numberCases = 0;
+	size_t	startCase = 1;
 	int		printAll = 0;
 	int		newlinesBefore = 0;
 	int		newlinesAfter = 3;
+	int		newlinesBetween = 3;
 	char	startEndLine = '*';
 	char	subjectsLine = '=';
-	char	empty;
 
 	// begin test
 	insertHeadline("PART I", startEndLine, 1, 1);
-	do
-	{
-        printf("Enter the number of cases (1-9): ");
-        if (scanf("%lu", &numberCases) != 1) {
-            scanf("%c", &empty);
-            printf("Enter a number between 1 and 9.\n");
-            numberCases = 0;
-        }
-    } while (numberCases < 1 || numberCases > 9);
-	
-	printf("Number of cases: %lu\n\n", numberCases);	
+
+	numberCases = getCaseNumbers(startCase);
 
 	PressKeyReadControl(&printAll);
 	printf("\n");
-
 
 	// toupper
 	insertHeadline("toupper", subjectsLine, newlinesBefore, newlinesAfter);
@@ -68,10 +59,11 @@ int	main(void)
 		printf("  Target  : %s%c%s\n", BLU, upperChars[i], STD);
 		printf("  Original: %c\n", toupper(upperChars[i]));
 		if (toupper(upperChars[i]) == ft_toupper(upperChars[i]))
-			printf("%s  Remake  : %c\n%s", GRN, ft_toupper(upperChars[i]), STD);
+			printf("%s  Remake  : %c\n", GRN, ft_toupper(upperChars[i]));
 		else
-			printf("%s  Remake  : %c\n%s", RED, ft_toupper(upperChars[i]), STD);
-		printf("\n\n\n");
+			printf("%s  Remake  : %c\n", RED, ft_toupper(upperChars[i]));
+		linesBetweenCases(newlinesBetween);
+
 	}
 
 	if (!printAll)
@@ -83,10 +75,11 @@ int	main(void)
 		printf("  Target  : %s%c%s\n", BLU, lowerChars[i], STD);
 		printf("  Original: %c\n", tolower(lowerChars[i]));
 		if (tolower(lowerChars[i]) == ft_tolower(lowerChars[i]))
-			printf("%s  Remake  : %c\n%s", GRN, ft_tolower(lowerChars[i]), STD);
+			printf("%s  Remake  : %c\n", GRN, ft_tolower(lowerChars[i]));
 		else
-			printf("%s  Remake  : %c\n%s", RED, ft_tolower(lowerChars[i]), STD);
-		printf("\n\n\n");
+			printf("%s  Remake  : %c\n", RED, ft_tolower(lowerChars[i]));
+		linesBetweenCases(newlinesBetween);
+
 	}
 
 	if (!printAll)
@@ -98,19 +91,21 @@ int	main(void)
 		printf("  Target  : %s%c%s is ascii?\n", BLU, commonChars[i], STD);
 		printf("  Original: %s\n", isascii(commonChars[i]) ? "Yes" : "No");
 		if (isascii(commonChars[i]) >= ft_isascii(commonChars[i]))
-			printf("%s  Remake  : %s\n%s", GRN, ft_isascii(commonChars[i]) ? "Yes" : "No", STD);
+			printf("%s  Remake  : %s\n", GRN, ft_isascii(commonChars[i]) ? "Yes" : "No");
 		else
-			printf("%s  Remake  : %s\n%s", RED, ft_isascii(commonChars[i]) ? "Yes" : "No", STD);
-		printf("\n\n\n");
+			printf("%s  Remake  : %s\n", RED, ft_isascii(commonChars[i]) ? "Yes" : "No");
+		linesBetweenCases(newlinesBetween);
+
 	}
 	char	*nonAscii = "€";
 	printf("  Target  : %s€%s is ascii?\n", BLU, STD);
 	printf("  Original: %s\n", isascii(*nonAscii) ? "Yes" : "No");
 	if (isascii(*nonAscii) >= ft_isascii(*nonAscii))
-		printf("%s  Remake  : %s\n%s", GRN, ft_isascii(*nonAscii) ? "Yes" : "No", STD);
+		printf("%s  Remake  : %s\n", GRN, ft_isascii(*nonAscii) ? "Yes" : "No");
 	else
-		printf("%s  Remake  : %s\n%s", RED, ft_isascii(*nonAscii) ? "Yes" : "No", STD);
-	printf("\n\n\n");
+		printf("%s  Remake  : %s\n", RED, ft_isascii(*nonAscii) ? "Yes" : "No");
+	linesBetweenCases(newlinesBetween);
+
 
 	if (!printAll)
 		PressKeyReadControl(&printAll);
@@ -121,19 +116,21 @@ int	main(void)
 		printf("  Target  : %s%c%s is printable?\n", BLU, commonChars[i], STD);
 		printf("  Original: %s\n", isprint(commonChars[i]) ? "Yes" : "No");
 		if (isprint(commonChars[i]) >= ft_isprint(commonChars[i]))
-			printf("%s  Remake  : %s\n%s", GRN, ft_isprint(commonChars[i]) ? "Yes" : "No", STD);
+			printf("%s  Remake  : %s\n", GRN, ft_isprint(commonChars[i]) ? "Yes" : "No");
 		else
-			printf("%s  Remake  : %s\n%s", RED, ft_isprint(commonChars[i]) ? "Yes" : "No", STD);
-		printf("\n\n\n");
+			printf("%s  Remake  : %s\n", RED, ft_isprint(commonChars[i]) ? "Yes" : "No");
+		linesBetweenCases(newlinesBetween);
+
 	}
 	char	*nonPrint = "\n";
 	printf("  Target  : %s\\n%s is printable?\n", BLU, STD);
 	printf("  Original: %s\n", isprint(*nonPrint) ? "Yes" : "No");
 	if (isprint(*nonPrint) >= ft_isprint(*nonPrint))
-		printf("%s  Remake  : %s\n%s", GRN, ft_isprint(*nonPrint) ? "Yes" : "No", STD);
+		printf("%s  Remake  : %s\n", GRN, ft_isprint(*nonPrint) ? "Yes" : "No");
 	else
-		printf("%s  Remake  : %s\n%s", RED, ft_isprint(*nonPrint) ? "Yes" : "No", STD);
-	printf("\n\n\n");
+		printf("%s  Remake  : %s\n", RED, ft_isprint(*nonPrint) ? "Yes" : "No");
+	linesBetweenCases(newlinesBetween);
+
 
 	if (!printAll)
 		PressKeyReadControl(&printAll);
@@ -144,10 +141,11 @@ int	main(void)
 		printf("  Target  : %s%c%s is alphanumeric?\n", BLU, commonChars[i], STD);
 		printf("  Original: %s\n", isalnum(commonChars[i]) ? "Yes" : "No");
 		if (isalnum(commonChars[i]) >= ft_isalnum(commonChars[i]))
-			printf("%s  Remake  : %s\n%s", GRN, ft_isalnum(commonChars[i]) ? "Yes" : "No", STD);
+			printf("%s  Remake  : %s\n", GRN, ft_isalnum(commonChars[i]) ? "Yes" : "No");
 		else
-			printf("%s  Remake  : %s\n%s", RED, ft_isalnum(commonChars[i]) ? "Yes" : "No", STD);
-		printf("\n\n\n");
+			printf("%s  Remake  : %s\n", RED, ft_isalnum(commonChars[i]) ? "Yes" : "No");
+		linesBetweenCases(newlinesBetween);
+
 	}
 
 	if (!printAll)
@@ -159,10 +157,11 @@ int	main(void)
 		printf("  Target  : %s%c%s is alphabetic?\n", BLU, commonChars[i], STD);
 		printf("  Original: %s\n", isalpha(commonChars[i]) ? "Yes" : "No");
 		if (isalpha(commonChars[i]) >= ft_isalpha(commonChars[i]))
-			printf("%s  Remake  : %s\n%s", GRN, ft_isalpha(commonChars[i]) ? "Yes" : "No", STD);
+			printf("%s  Remake  : %s\n", GRN, ft_isalpha(commonChars[i]) ? "Yes" : "No");
 		else
-			printf("%s  Remake  : %s\n%s", RED, ft_isalpha(commonChars[i]) ? "Yes" : "No", STD);
-		printf("\n\n\n");
+			printf("%s  Remake  : %s\n", RED, ft_isalpha(commonChars[i]) ? "Yes" : "No");
+		linesBetweenCases(newlinesBetween);
+
 	}
 	
 	if (!printAll)
@@ -174,10 +173,11 @@ int	main(void)
 		printf("  Target  : %s%c%s is digit?\n", BLU, commonChars[i], STD);
 		printf("  Original: %s\n", isdigit(commonChars[i]) ? "Yes" : "No");
 		if (isdigit(commonChars[i]) >= ft_isdigit(commonChars[i]))
-			printf("%s  Remake  : %s\n%s", GRN, ft_isdigit(commonChars[i]) ? "Yes" : "No", STD);
+			printf("%s  Remake  : %s\n", GRN, ft_isdigit(commonChars[i]) ? "Yes" : "No");
 		else
-			printf("%s  Remake  : %s\n%s", RED, ft_isdigit(commonChars[i]) ? "Yes" : "No", STD);
-		printf("\n\n\n");
+			printf("%s  Remake  : %s\n", RED, ft_isdigit(commonChars[i]) ? "Yes" : "No");
+		linesBetweenCases(newlinesBetween);
+
 	}
 
 	if (!printAll)
@@ -189,10 +189,11 @@ int	main(void)
 		printf("  Target  : %s%s%s\n", BLU, strs1[i], STD);
 		printf("  Original: %d\n", atoi(strs1[i]));
 		if (atoi(strs1[i]) == ft_atoi(strs1[i]))
-			printf("%s  Remake  : %d\n%s", GRN, ft_atoi(strs1[i]), STD);
+			printf("%s  Remake  : %d\n", GRN, ft_atoi(strs1[i]));
 		else
-			printf("%s  Remake  : %d\n%s", RED, ft_atoi(strs1[i]), STD);
-		printf("\n\n\n");
+			printf("%s  Remake  : %d\n", RED, ft_atoi(strs1[i]));
+		linesBetweenCases(newlinesBetween);
+
 	}
 
 	if (!printAll)
@@ -204,10 +205,11 @@ int	main(void)
 		printf("  Target  : %s%s%s\n", BLU, strs2[i], STD);
 		printf("  Original: %lu\n", strlen(strs2[i]));
 		if (strlen(strs2[i]) == ft_strlen(strs2[i]))
-			printf("%s  Remake  : %lu\n%s", GRN, ft_strlen(strs2[i]), STD);
+			printf("%s  Remake  : %lu\n", GRN, ft_strlen(strs2[i]));
 		else
-			printf("%s  Remake  : %lu\n%s", RED, ft_strlen(strs2[i]), STD);
-		printf("\n\n\n");
+			printf("%s  Remake  : %lu\n", RED, ft_strlen(strs2[i]));
+		linesBetweenCases(newlinesBetween);
+
 	}
 
 	if (!printAll)
@@ -221,10 +223,11 @@ int	main(void)
 		ft_strcpy(emptyB[i], strs2[i]);
 		printf("  Original: %s\n", emptyA[i]);
 		if (ft_strcmp(emptyA[i], emptyB[i]) == 0)
-			printf("%s  Remake  : %s\n%s", GRN, emptyB[i], STD);
+			printf("%s  Remake  : %s\n", GRN, emptyB[i]);
 		else
-			printf("%s  Remake  : %s\n%s", RED, emptyB[i], STD);
-		printf("\n\n\n");
+			printf("%s  Remake  : %s\n", RED, emptyB[i]);
+		linesBetweenCases(newlinesBetween);
+
 	}
 	for (size_t i = 0; i < numberCases; i++)
 	{
@@ -243,10 +246,11 @@ int	main(void)
 		ft_strncpy(emptyB[i], strs2[i], i + 1);
 		printf("  Original: %s\n", emptyA[i]);
 		if (ft_strcmp(emptyA[i], emptyB[i]) == 0)
-			printf("%s  Remake  : %s\n%s", GRN, emptyB[i], STD);
+			printf("%s  Remake  : %s\n", GRN, emptyB[i]);
 		else
-			printf("%s  Remake  : %s\n%s", RED, emptyB[i], STD);
-		printf("\n\n\n");
+			printf("%s  Remake  : %s\n", RED, emptyB[i]);
+		linesBetweenCases(newlinesBetween);
+
 	}
 	for (size_t i = 0; i < numberCases; i++)
 	{
@@ -265,10 +269,11 @@ int	main(void)
 		ft_strcat(comb2[i], strs2[i]);
 		printf("  Original: %s\n", comb1[i]);
 		if (ft_strcmp(comb1[i], comb2[i]) == 0)
-			printf("%s  Remake  : %s\n%s", GRN, comb2[i], STD);
+			printf("%s  Remake  : %s\n", GRN, comb2[i]);
 		else
-			printf("%s  Remake  : %s\n%s", RED, comb2[i], STD);
-		printf("\n\n\n");
+			printf("%s  Remake  : %s\n", RED, comb2[i]);
+		linesBetweenCases(newlinesBetween);
+
 	}
 
 	if (!printAll)
@@ -283,10 +288,11 @@ int	main(void)
 		ft_strncat(comb2[i], strs3[i], i + 1);
 		printf("  Original: %s\n", comb1[i]);
 		if (ft_strcmp(comb1[i], comb2[i]) == 0)
-			printf("%s  Remake  : %s\n%s", GRN, comb2[i], STD);
+			printf("%s  Remake  : %s\n", GRN, comb2[i]);
 		else
-			printf("%s  Remake  : %s\n%s", RED, comb2[i], STD);
-		printf("\n\n\n");
+			printf("%s  Remake  : %s\n", RED, comb2[i]);
+		linesBetweenCases(newlinesBetween);
+
 	}
 
 	if (!printAll)
@@ -298,8 +304,9 @@ int	main(void)
 		printf("  Target  : Buffer of Concatenate %s%s%s with %s%s%s\n", \
 		BLU, comb1[i], STD, BLU, strs3[i], STD);
 		temp = ft_strlcat(comb1[i], strs3[i], i + 20);
-		printf("%s  Remake  : %lu [%s]\n%s", GRN, temp, comb1[i], STD);
-		printf("\n\n\n");
+		printf("%s  Remake  : %lu [%s]\n", GRN, temp, comb1[i]);
+		linesBetweenCases(newlinesBetween);
+
 	}
 
 	if (!printAll)
@@ -314,10 +321,11 @@ int	main(void)
 		y = ft_strcmp(strs2[i], strs3[i]);
 		printf("  Original: %d\n", x);
 		if (x == y)
-			printf("%s  Remake  : %d\n%s", GRN, y, STD);
+			printf("%s  Remake  : %d\n", GRN, y);
 		else
-			printf("%s  Remake  : %d\n%s", RED, y, STD);
-		printf("\n\n\n");
+			printf("%s  Remake  : %d\n", RED, y);
+		linesBetweenCases(newlinesBetween);
+
 		x = 0;
 		y = 0;
 	}
@@ -334,10 +342,11 @@ int	main(void)
 		y = ft_strncmp(strs2[i], strs3[i], i);
 		printf("  Original: %d\n", x);
 		if (x == y)
-			printf("%s  Remake  : %d\n%s", GRN, y, STD);
+			printf("%s  Remake  : %d\n", GRN, y);
 		else
-			printf("%s  Remake  : %d\n%s", RED, y, STD);
-		printf("\n\n\n");
+			printf("%s  Remake  : %d\n", RED, y);
+		linesBetweenCases(newlinesBetween);
+
 		x = 0;
 		y = 0;
 	}
@@ -353,10 +362,11 @@ int	main(void)
 		ptr2 = ft_strdup(strs3[i]);
 		printf("  Original: %s\n", ptr1);
 		if (ft_strcmp(ptr1, ptr2) == 0)
-			printf("%s  Remake  : %s\n%s", GRN, ptr2, STD);
+			printf("%s  Remake  : %s\n", GRN, ptr2);
 		else
-			printf("%s  Remake  : %s\n%s", RED, ptr2, STD);
-		printf("\n\n\n");
+			printf("%s  Remake  : %s\n", RED, ptr2);
+		linesBetweenCases(newlinesBetween);
+
 	}
 	free(ptr1);
 	free(ptr2);
@@ -374,12 +384,13 @@ int	main(void)
 		ptr2 = ft_strstr(comb1[i], strs4[i]);
 		printf("  Original: %s\n", ptr1);
 		if (ptr1 == NULL && ptr2 == NULL)
-			printf("%s  Remake  : %s\n%s", GRN, ptr2, STD);
+			printf("%s  Remake  : %s\n", GRN, ptr2);
 		else if (ft_strcmp(ptr1, ptr2) == 0)
-			printf("%s  Remake  : %s\n%s", GRN, ptr2, STD);
+			printf("%s  Remake  : %s\n", GRN, ptr2);
 		else
-			printf("%s  Remake  : %s\n%s", RED, ptr2, STD);
-		printf("\n\n\n");
+			printf("%s  Remake  : %s\n", RED, ptr2);
+		linesBetweenCases(newlinesBetween);
+
 		ptr1 = NULL;
 		ptr2 = NULL;
 	}
@@ -395,8 +406,9 @@ int	main(void)
 		printf("  Target  : Find %s%s%s in %s%s%s until position %s%lu%s\n", \
 		BLU, strs4[i], STD, BLU, comb1[i], STD, BLU, i + 8, STD);
 		ptr2 = ft_strnstr(comb1[i], strs4[i], i + 8);
-		printf("%s  Remake  : %s\n%s", GRN, ptr2, STD);
-		printf("\n\n\n");
+		printf("%s  Remake  : %s\n", GRN, ptr2);
+		linesBetweenCases(newlinesBetween);
+
 		ptr2 = NULL;
 	}
 	free(ptr2);
@@ -417,18 +429,19 @@ int	main(void)
 		if (ptr2 != NULL)
 		{
 			if (ft_strcmp(ptr1, ptr2) == 0)
-				printf("%s  Remake  : %c is found in [%s] at index %ld\n%s", GRN, *ptr2, comb1[i], ptr2 - comb1[i], STD);
+				printf("%s  Remake  : %c is found in [%s] at index %ld\n", GRN, *ptr2, comb1[i], ptr2 - comb1[i]);
 			else
-				printf("%s  Remake  : %c is found in [%s] at index %ld\n%s", RED, *ptr2, comb1[i], ptr2 - comb1[i], STD);
+				printf("%s  Remake  : %c is found in [%s] at index %ld\n", RED, *ptr2, comb1[i], ptr2 - comb1[i]);
 		}
 		else
 		{
 			if (ptr1 == NULL && ptr2 == NULL)
-				printf("%s  Remake  : %s\n%s", GRN, ptr2, STD);
+				printf("%s  Remake  : %s\n", GRN, ptr2);
 			else
-				printf("%s  Remake  : %s\n%s", RED, ptr2, STD);
+				printf("%s  Remake  : %s\n", RED, ptr2);
 		}
-		printf("\n\n\n");
+		linesBetweenCases(newlinesBetween);
+
 		ptr1 = NULL;
 		ptr2 = NULL;
 	}
@@ -449,18 +462,19 @@ int	main(void)
 		if (ptr2 != NULL)
 		{
 			if (ft_strcmp(ptr1, ptr2) == 0)
-				printf("%s  Remake  : %c is found in [%s] at index %ld\n%s", GRN, *ptr2, comb1[i], ptr2 - comb1[i], STD);
+				printf("%s  Remake  : %c is found in [%s] at index %ld\n", GRN, *ptr2, comb1[i], ptr2 - comb1[i]);
 			else
-				printf("%s  Remake  : %c is found in [%s] at index %ld\n%s", RED, *ptr2, comb1[i], ptr2 - comb1[i], STD);
+				printf("%s  Remake  : %c is found in [%s] at index %ld\n", RED, *ptr2, comb1[i], ptr2 - comb1[i]);
 		}
 		else
 		{
 			if (ptr1 == NULL && ptr2 == NULL)
-				printf("%s  Remake  : %s\n%s", GRN, ptr2, STD);
+				printf("%s  Remake  : %s\n", GRN, ptr2);
 			else
-				printf("%s  Remake  : %s\n%s", RED, ptr2, STD);
+				printf("%s  Remake  : %s\n", RED, ptr2);
 		}
-		printf("\n\n\n");
+		linesBetweenCases(newlinesBetween);
+
 		ptr1 = NULL;
 		ptr2 = NULL;
 	}
@@ -476,10 +490,11 @@ int	main(void)
 		ft_memcpy(emptyB[i], strs2[i], ft_strlen(strs2[i]) + 1);
 		printf("  Original: %s\n", emptyA[i]);
 		if (ft_strcmp(emptyA[i], emptyB[i]) == 0)
-			printf("%s  Remake  : %s\n%s", GRN, emptyB[i], STD);
+			printf("%s  Remake  : %s\n", GRN, emptyB[i]);
 		else
-			printf("%s  Remake  : %s\n%s", RED, emptyB[i], STD);
-		printf("\n\n\n");
+			printf("%s  Remake  : %s\n", RED, emptyB[i]);
+		linesBetweenCases(newlinesBetween);
+
 	}
 	for (size_t i = 0; i < numberCases; i++)
 	{
@@ -498,10 +513,11 @@ int	main(void)
 		ft_memccpy(emptyB[i], strs2[i], commonChars[i], i + 1);
 		printf("  Original: %s\n", emptyA[i]);
 		if (ft_strcmp(emptyA[i], emptyB[i]) == 0)
-			printf("%s  Remake  : %s\n%s", GRN, emptyB[i], STD);
+			printf("%s  Remake  : %s\n", GRN, emptyB[i]);
 		else
-			printf("%s  Remake  : %s\n%s", RED, emptyB[i], STD);
-		printf("\n\n\n");
+			printf("%s  Remake  : %s\n", RED, emptyB[i]);
+		linesBetweenCases(newlinesBetween);
+
 	}
 	for (size_t i = 0; i < numberCases; i++)
 	{
@@ -525,18 +541,19 @@ int	main(void)
 		if (ptr2 != NULL)
 		{
 			if (ft_strcmp(ptr1, ptr2) == 0)
-				printf("%s  Remake  : %c is found in [%s] at index %ld\n%s", GRN, *ptr2, comb1[i], ptr2 - comb1[i], STD);
+				printf("%s  Remake  : %c is found in [%s] at index %ld\n", GRN, *ptr2, comb1[i], ptr2 - comb1[i]);
 			else
-				printf("%s  Remake  : %c is found in [%s] at index %ld\n%s", RED, *ptr2, comb1[i], ptr2 - comb1[i], STD);
+				printf("%s  Remake  : %c is found in [%s] at index %ld\n", RED, *ptr2, comb1[i], ptr2 - comb1[i]);
 		}
 		else
 		{
 			if (ptr1 == NULL && ptr2 == NULL)
-				printf("%s  Remake  : %s\n%s", GRN, ptr2, STD);
+				printf("%s  Remake  : %s\n", GRN, ptr2);
 			else
-				printf("%s  Remake  : %s\n%s", RED, ptr2, STD);
+				printf("%s  Remake  : %s\n", RED, ptr2);
 		}
-		printf("\n\n\n");
+		linesBetweenCases(newlinesBetween);
+
 		ptr1 = NULL;
 		ptr2 = NULL;
 	}
@@ -553,10 +570,11 @@ int	main(void)
 		y = ft_memcmp(strs2[i], strs3[i], i);
 		printf("  Original: %d\n", x);
 		if (x == y)
-			printf("%s  Remake  : %d\n%s", GRN, y, STD);
+			printf("%s  Remake  : %d\n", GRN, y);
 		else
-			printf("%s  Remake  : %d\n%s", RED, y, STD);
-		printf("\n\n\n");
+			printf("%s  Remake  : %d\n", RED, y);
+		linesBetweenCases(newlinesBetween);
+
 		x = 0;
 		y = 0;
 	}
@@ -575,10 +593,11 @@ int	main(void)
 		ft_memset(strs6[i], commonChars[i], i + 1);
 		printf("  Original: %s > %s\n", emptyA[i], strs5[i]);
 		if (ft_strcmp(strs5[i], strs6[i]) == 0)
-			printf("%s  Remake  : %s > %s\n%s", GRN, emptyB[i], strs6[i], STD);
+			printf("%s  Remake  : %s > %s\n", GRN, emptyB[i], strs6[i]);
 		else
-			printf("%s  Remake  : %s > %s\n%s", RED, emptyB[i], strs6[i], STD);
-		printf("\n\n\n");
+			printf("%s  Remake  : %s > %s\n", RED, emptyB[i], strs6[i]);
+		linesBetweenCases(newlinesBetween);
+
 	}
 	for (size_t i = 0; i < numberCases; i++)
 	{
@@ -598,10 +617,11 @@ int	main(void)
 		ft_memmove(emptyB[i], strs2[i], i + 1);
 		printf("  Original: %s\n", emptyA[i]);
 		if (ft_strcmp(strs5[i], strs6[i]) == 0)
-			printf("%s  Remake  : %s\n%s", GRN, emptyB[i], STD);
+			printf("%s  Remake  : %s\n", GRN, emptyB[i]);
 		else
-			printf("%s  Remake  : %s\n%s", RED, emptyB[i], STD);
-		printf("\n\n\n");
+			printf("%s  Remake  : %s\n", RED, emptyB[i]);
+		linesBetweenCases(newlinesBetween);
+
 	}
 	for (size_t i = 0; i < numberCases; i++)
 	{
@@ -649,7 +669,8 @@ int	main(void)
        			printf("[%c]", emptyB[i][j]);
 			printf("\n%s", STD);	
 		}
-		printf("\n\n\n");
+		linesBetweenCases(newlinesBetween);
+
 	}
 	insertHeadline("END", startEndLine, 0, 1);
 }
