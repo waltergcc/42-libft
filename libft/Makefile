@@ -29,8 +29,8 @@ OBJS = ${SRC:.c=.o}
 
 HEADER = include/libft.h
 
-CC		= gcc
-RM		= rm -f
+CC = gcc
+RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
 INCLUDE = -I include
 
