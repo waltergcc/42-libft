@@ -6,7 +6,7 @@
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:31 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/04/13 03:53:32 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/04/13 11:44:23 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_strrchr(const char *s, int c);
 char	*ft_strdup(const char *s);
 char	*ft_itoa(int n);
 char	*ft_strjoin(char const *s1, char const *s2);
-char	**ft_strsplit(char const *s, char c);
+char	**ft_split(char const *s, char c);
 char	*ft_strnew(size_t size);
 char	*ft_strmap(char const *s, char (*f)(char));
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));

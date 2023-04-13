@@ -6,7 +6,7 @@
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:19:27 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/04/13 04:14:19 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/04/13 11:46:30 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,11 @@ int	main(void)
 
 	if (!printAll)
 		PressKeyReadControl(&printAll);
-	// strsplit
-	insertHeadline("strsplit", subjectsLine, newlinesBefore, newlinesAfter);
+	// split
+	insertHeadline("split", subjectsLine, newlinesBefore, newlinesAfter);
 	for (size_t i = 0; i < numberCases; i++)
 	{
-		char	**words = ft_strsplit(frases[i], spaceChar);
+		char	**words = ft_split(frases[i], spaceChar);
 		printf("  Target: Split %s%s%s with '%c'%s\n", BLU, frases[i], STD, spaceChar, GRN);
 		ft_putstr("  Remake: ");
 		for (size_t j = 0; words[j] != NULL; j++)
