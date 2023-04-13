@@ -6,7 +6,7 @@
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:19:27 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/04/13 03:16:15 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/04/13 19:53:02 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	main(void)
 	char	comb1[9][60] = {"I ", "am ", "happy ", "to ", "learn ", "new ", "things ", "and ", "grow "};
 	int		x;
 	int		y;
+	int		*arrA;
+	int		*arrB;	
 	size_t	temp;
 
 	// Prints auxiliar
@@ -220,6 +222,19 @@ int	main(void)
 		printf("  Target  : Buffer of Concatenate %s%s%s with %s%s%s\n", \
 		BLU, comb1[i], STD, BLU, strs3[i], STD);
 		temp = ft_strlcat(comb1[i], strs3[i], i + 20);
+		printf("%s  Remake  : %lu [%s]\n", GRN, temp, comb1[i]);
+		linesBetweenCases(newlinesBetween);
+
+	}
+
+	if (!printAll)
+		PressKeyReadControl(&printAll);
+	// strlcpy
+	insertHeadline("strlcpy", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
+	{
+		printf("  Target  : Buffer of copy %s%s%s\n", BLU, comb1[i], STD);
+		temp = ft_strlcpy(comb1[i], strs3[i], i + 1);
 		printf("%s  Remake  : %lu [%s]\n", GRN, temp, comb1[i]);
 		linesBetweenCases(newlinesBetween);
 
@@ -453,6 +468,7 @@ int	main(void)
 		ft_strclr(emptyB[i]);
 	}
 
+
 	if (!printAll)
 		PressKeyReadControl(&printAll);
 	// memmove
@@ -475,6 +491,26 @@ int	main(void)
 	{
 		ft_strclr(emptyA[i]);
 		ft_strclr(emptyB[i]);
+	}
+	
+ 	if (!printAll)
+		PressKeyReadControl(&printAll);
+	// calloc
+	insertHeadline("calloc", subjectsLine, newlinesBefore, newlinesAfter);
+	for (size_t i = 0; i < numberCases; i++)
+	{
+		printf("  Target  : Alloc %s%lu%s positions of memory\n", BLU, i + 1, STD);
+		arrA = calloc(i + 1, sizeof(int));
+		arrB = calloc(i + 1, sizeof(int));
+		printf("  Original: ");
+		for (size_t j = 0; j < i + 1; j++)
+			printf("[%d]", arrA[j]);
+		printf("%s\n  Remake  : ", GRN);
+		for (size_t j = 0; j < i + 1; j++)
+			printf("[%d]", arrB[j]);	
+		linesBetweenCases(newlinesBetween);
+		free(arrA);		
+		free(arrB);
 	}
 
 	if (!printAll)

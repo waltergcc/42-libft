@@ -21,10 +21,8 @@ PART I
 - [x] strncmp
 - [x] strchr - need correction
 - [x] strrchr - need correction
-
-Missing
-- [ ] strlcpy
-- [ ] calloc
+- [x] strlcpy
+- [x] calloc
 
 Part II
 
@@ -37,10 +35,8 @@ Part II
 - [x] strjoin
 - [x] itoa
 - [x] strtrim
-
-Need refactoration
-- [ ] substr
-- [ ] split
+- [x] substr
+- [x] split
 
 BONUS
 

@@ -6,7 +6,7 @@
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:19:27 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/04/13 11:46:30 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/04/13 18:11:01 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,13 +124,13 @@ int	main(void)
 
 	if (!printAll)
 		PressKeyReadControl(&printAll);
-	// strsub
-	insertHeadline("strsub", subjectsLine, newlinesBefore, newlinesAfter);
+	// substr
+	insertHeadline("substr", subjectsLine, newlinesBefore, newlinesAfter);
 	for (size_t i = 0; i < numberCases; i++)
 	{
 		printf("  Target: Get a substring of %s%s%s\n", BLU, frases[i], GRN);
 		printf("  Remake: %s > ", frases[i]);
-		empty[i] = ft_strsub(frases[i], i, i * i);
+		empty[i] = ft_substr(frases[i], i, i * i);
 		printf("%s", empty[i]);
 		free(empty[i]);
 		linesBetweenCases(newlinesBetween);
