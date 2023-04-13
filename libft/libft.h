@@ -6,7 +6,7 @@
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:31 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/03/20 22:08:59 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/04/13 03:53:32 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,13 @@ char	*ft_strnew(size_t size);
 char	*ft_strmap(char const *s, char (*f)(char));
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strsub(char const *s, unsigned int start, size_t len);
-char	*ft_strtrim(char const *s);
+char	*ft_strtrim(char const *s1, char const *set);
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 void	ft_striter(char *s, void (*f)(char *));
 void	ft_strclr(char *s);
 void	ft_strdel(char **as);
 void	ft_memdel(void **ap);
-void	*ft_memalloc(size_t size);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memccpy(void *dest, const void *src, int c, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);

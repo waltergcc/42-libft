@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 12:55:02 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/04/12 23:55:24 by wcorrea-         ###   ########.fr       */
+/*   Created: 2023/02/11 20:25:34 by wcorrea-          #+#    #+#             */
+/*   Updated: 2023/04/13 01:15:55 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+int	ft_atoi(const char *nptr)
 {
-	size_t	i;
-	size_t	j;
+	int	sum;
+	int	sign;
 
-	i = 0;
-	if (needle[0] == '\0')
-		return ((char *)haystack);
-	while (haystack[i] && i < len)
+	sum = 0;
+	sign = 1;
+	while (*nptr == ' ' || (*nptr >= 9 && *nptr <= 13))
+		nptr++;
+	if (*nptr == '+' || *nptr == '-')
 	{
-		j = 0;
-		while (haystack[i + j] != '\0'
-			&& haystack[i + j] == needle[j] && i + j < len)
-		{
-			if (needle[j + 1] == '\0')
-				return ((char *)&haystack[i]);
-			++j;
-		}	
-		++i;
-	}	
-	return (NULL);
+		if (*nptr == '-')
+			sign *= -1;
+		nptr++;
+	}
+	while (*nptr >= '0' && *nptr <= '9')
+	{
+		sum = (sum * 10) + (*nptr - '0');
+		nptr++;
+	}
+	return (sign * sum);
 }

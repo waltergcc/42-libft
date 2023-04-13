@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 12:55:02 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/04/12 23:55:24 by wcorrea-         ###   ########.fr       */
+/*   Created: 2023/03/20 21:35:12 by wcorrea-          #+#    #+#             */
+/*   Updated: 2023/03/21 00:20:40 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	size_t	i;
-	size_t	j;
+	t_list	*next;
+	t_list	*current;
 
-	i = 0;
-	if (needle[0] == '\0')
-		return ((char *)haystack);
-	while (haystack[i] && i < len)
+	if (alst && del)
 	{
-		j = 0;
-		while (haystack[i + j] != '\0'
-			&& haystack[i + j] == needle[j] && i + j < len)
+		current = *alst;
+		while (current)
 		{
-			if (needle[j + 1] == '\0')
-				return ((char *)&haystack[i]);
-			++j;
-		}	
-		++i;
-	}	
-	return (NULL);
+			next = current->next;
+			del(current->content, current->content_size);
+			free(current);
+			current = next;
+		}
+		*alst = NULL;
+	}
 }

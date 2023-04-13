@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 12:55:02 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/04/12 23:55:24 by wcorrea-         ###   ########.fr       */
+/*   Created: 2023/02/15 13:15:03 by wcorrea-          #+#    #+#             */
+/*   Updated: 2023/03/19 01:36:57 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
-	size_t	j;
+	size_t	len1;
+	size_t	len2;
+	char	*concat;
 
-	i = 0;
-	if (needle[0] == '\0')
-		return ((char *)haystack);
-	while (haystack[i] && i < len)
-	{
-		j = 0;
-		while (haystack[i + j] != '\0'
-			&& haystack[i + j] == needle[j] && i + j < len)
-		{
-			if (needle[j + 1] == '\0')
-				return ((char *)&haystack[i]);
-			++j;
-		}	
-		++i;
-	}	
-	return (NULL);
+	if (!s1 || !s2)
+		return (NULL);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	concat = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
+	if (!concat)
+		return (NULL);
+	ft_memcpy(concat, s1, len1);
+	ft_memcpy(concat + len1, s2, len2);
+	concat[len1 + len2] = '\0';
+	return (concat);
 }

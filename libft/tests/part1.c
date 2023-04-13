@@ -6,7 +6,7 @@
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:19:27 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/03/24 00:13:07 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/04/13 03:16:15 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	main(void)
 	char	strs5[9][20] = {"fields", "like", "manufacturing", "medicine", "space", "exploration", "and", "more", "!"};
 	char	strs6[9][20] = {"fields", "like", "manufacturing", "medicine", "space", "exploration", "and", "more", "!"};
 	char	comb1[9][60] = {"I ", "am ", "happy ", "to ", "learn ", "new ", "things ", "and ", "grow "};
-	char	comb2[9][60] = {"I ", "am ", "happy ", "to ", "learn ", "new ", "things ", "and ", "grow "};
 	int		x;
 	int		y;
 	size_t	temp;
@@ -214,89 +213,6 @@ int	main(void)
 
 	if (!printAll)
 		PressKeyReadControl(&printAll);
-	// strcpy
-	insertHeadline("strcpy", subjectsLine, newlinesBefore, newlinesAfter);
-	for (size_t i = 0; i < numberCases; i++)
-	{
-		printf("  Target  : Copy of %s%s%s\n", BLU, strs2[i], STD);
-		strcpy(emptyA[i], strs2[i]);
-		ft_strcpy(emptyB[i], strs2[i]);
-		printf("  Original: %s\n", emptyA[i]);
-		if (ft_strcmp(emptyA[i], emptyB[i]) == 0)
-			printf("%s  Remake  : %s\n", GRN, emptyB[i]);
-		else
-			printf("%s  Remake  : %s\n", RED, emptyB[i]);
-		linesBetweenCases(newlinesBetween);
-
-	}
-	for (size_t i = 0; i < numberCases; i++)
-	{
-		ft_strclr(emptyA[i]);
-		ft_strclr(emptyB[i]);
-	}
-
-	if (!printAll)
-		PressKeyReadControl(&printAll);
-	// strncpy
-	insertHeadline("strncpy", subjectsLine, newlinesBefore, newlinesAfter);
-	for (size_t i = 0; i < numberCases; i++)
-	{
-		printf("  Target  : Copy of %s%s%s until position %s%lu%s\n", BLU, strs2[i], STD, BLU, i + 1, STD);
-		strncpy(emptyA[i], strs2[i], i + 1);
-		ft_strncpy(emptyB[i], strs2[i], i + 1);
-		printf("  Original: %s\n", emptyA[i]);
-		if (ft_strcmp(emptyA[i], emptyB[i]) == 0)
-			printf("%s  Remake  : %s\n", GRN, emptyB[i]);
-		else
-			printf("%s  Remake  : %s\n", RED, emptyB[i]);
-		linesBetweenCases(newlinesBetween);
-
-	}
-	for (size_t i = 0; i < numberCases; i++)
-	{
-		ft_strclr(emptyA[i]);
-		ft_strclr(emptyB[i]);
-	}
-
-	if (!printAll)
-		PressKeyReadControl(&printAll);
-	// strcat
-	insertHeadline("strcat", subjectsLine, newlinesBefore, newlinesAfter);
-	for (size_t i = 0; i < numberCases; i++)
-	{
-		printf("  Target  : Concatenate %s%s%s with %s%s%s\n", BLU, comb1[i], STD, BLU, strs2[i], STD);
-		strcat(comb1[i], strs2[i]);
-		ft_strcat(comb2[i], strs2[i]);
-		printf("  Original: %s\n", comb1[i]);
-		if (ft_strcmp(comb1[i], comb2[i]) == 0)
-			printf("%s  Remake  : %s\n", GRN, comb2[i]);
-		else
-			printf("%s  Remake  : %s\n", RED, comb2[i]);
-		linesBetweenCases(newlinesBetween);
-
-	}
-
-	if (!printAll)
-		PressKeyReadControl(&printAll);
-	// strncat
-	insertHeadline("strncat", subjectsLine, newlinesBefore, newlinesAfter);
-	for (size_t i = 0; i < numberCases; i++)
-	{
-		printf("  Target  : Concatenate %s%s%s with %s%s%s until position %s%lu%s\n", \
-		BLU, comb1[i], STD, BLU, strs3[i], STD, BLU, i + 1, STD);
-		strncat(comb1[i], strs3[i], i + 1);
-		ft_strncat(comb2[i], strs3[i], i + 1);
-		printf("  Original: %s\n", comb1[i]);
-		if (ft_strcmp(comb1[i], comb2[i]) == 0)
-			printf("%s  Remake  : %s\n", GRN, comb2[i]);
-		else
-			printf("%s  Remake  : %s\n", RED, comb2[i]);
-		linesBetweenCases(newlinesBetween);
-
-	}
-
-	if (!printAll)
-		PressKeyReadControl(&printAll);
 	// strlcat
 	insertHeadline("strlcat", subjectsLine, newlinesBefore, newlinesAfter);
 	for (size_t i = 0; i < numberCases; i++)
@@ -307,27 +223,6 @@ int	main(void)
 		printf("%s  Remake  : %lu [%s]\n", GRN, temp, comb1[i]);
 		linesBetweenCases(newlinesBetween);
 
-	}
-
-	if (!printAll)
-		PressKeyReadControl(&printAll);
-	// strcmp
-	insertHeadline("strcmp", subjectsLine, newlinesBefore, newlinesAfter);
-	for (size_t i = 0; i < numberCases; i++)
-	{
-		printf("  Target  : Compare %s%s%s with %s%s%s\n", \
-		BLU, strs2[i], STD, BLU, strs3[i], STD);
-		x = strcmp(strs2[i], strs3[i]);
-		y = ft_strcmp(strs2[i], strs3[i]);
-		printf("  Original: %d\n", x);
-		if (x == y)
-			printf("%s  Remake  : %d\n", GRN, y);
-		else
-			printf("%s  Remake  : %d\n", RED, y);
-		linesBetweenCases(newlinesBetween);
-
-		x = 0;
-		y = 0;
 	}
 
 	if (!printAll)
@@ -372,30 +267,6 @@ int	main(void)
 	free(ptr2);
 	ptr1 = NULL;
 	ptr2 = NULL;
-
-	if (!printAll)
-		PressKeyReadControl(&printAll);	
-	// strstr
-	insertHeadline("strstr", subjectsLine, newlinesBefore, newlinesAfter);
-	for (size_t i = 0; i < numberCases; i++)
-	{
-		printf("  Target  : Find %s%s%s in %s%s%s\n", BLU, strs4[i], STD, BLU, comb1[i], STD);
-		ptr1 = strstr(comb1[i], strs4[i]);
-		ptr2 = ft_strstr(comb1[i], strs4[i]);
-		printf("  Original: %s\n", ptr1);
-		if (ptr1 == NULL && ptr2 == NULL)
-			printf("%s  Remake  : %s\n", GRN, ptr2);
-		else if (ft_strcmp(ptr1, ptr2) == 0)
-			printf("%s  Remake  : %s\n", GRN, ptr2);
-		else
-			printf("%s  Remake  : %s\n", RED, ptr2);
-		linesBetweenCases(newlinesBetween);
-
-		ptr1 = NULL;
-		ptr2 = NULL;
-	}
-	free(ptr1);
-	free(ptr2);
 
 	if (!printAll)
 		PressKeyReadControl(&printAll);
@@ -488,29 +359,6 @@ int	main(void)
 		printf("  Target  : Copy of %s%s%s\n", BLU, strs2[i], STD);
 		memcpy(emptyA[i], strs2[i], ft_strlen(strs2[i]) + 1);
 		ft_memcpy(emptyB[i], strs2[i], ft_strlen(strs2[i]) + 1);
-		printf("  Original: %s\n", emptyA[i]);
-		if (ft_strcmp(emptyA[i], emptyB[i]) == 0)
-			printf("%s  Remake  : %s\n", GRN, emptyB[i]);
-		else
-			printf("%s  Remake  : %s\n", RED, emptyB[i]);
-		linesBetweenCases(newlinesBetween);
-
-	}
-	for (size_t i = 0; i < numberCases; i++)
-	{
-		ft_strclr(emptyA[i]);
-		ft_strclr(emptyB[i]);
-	}
-	
-	if (!printAll)
-		PressKeyReadControl(&printAll);
-	// memccpy
-	insertHeadline("memccpy", subjectsLine, newlinesBefore, newlinesAfter);
-	for (size_t i = 0; i < numberCases; i++)
-	{
-		printf("  Target  : Copy of %s%s%s\n", BLU, strs2[i], STD);
-		memccpy(emptyA[i], strs2[i], commonChars[i], i + 1);
-		ft_memccpy(emptyB[i], strs2[i], commonChars[i], i + 1);
 		printf("  Original: %s\n", emptyA[i]);
 		if (ft_strcmp(emptyA[i], emptyB[i]) == 0)
 			printf("%s  Remake  : %s\n", GRN, emptyB[i]);

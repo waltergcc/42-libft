@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 12:55:02 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/04/12 23:55:24 by wcorrea-         ###   ########.fr       */
+/*   Created: 2023/03/18 14:59:10 by wcorrea-          #+#    #+#             */
+/*   Updated: 2023/03/18 18:52:00 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	size_t	i;
-	size_t	j;
+	unsigned char	*p;
 
-	i = 0;
-	if (needle[0] == '\0')
-		return ((char *)haystack);
-	while (haystack[i] && i < len)
-	{
-		j = 0;
-		while (haystack[i + j] != '\0'
-			&& haystack[i + j] == needle[j] && i + j < len)
-		{
-			if (needle[j + 1] == '\0')
-				return ((char *)&haystack[i]);
-			++j;
-		}	
-		++i;
-	}	
-	return (NULL);
+	p = s;
+	while (n-- > 0)
+		*p++ = (unsigned char) c;
+	return (s);
 }

@@ -20,7 +20,11 @@
 # define YEL "\033[33m"
 # define BLU "\033[34m"
 
-t_list	*ft_lst_toupper(t_list *elem);
+void	ft_strclr(char *s);
+char	*ft_strcpy(char *dest, const char *src);
+void	*ft_memalloc(size_t size);
+void	ft_putstr(char const *s);
+int		ft_strcmp(const char *s1, const char *s2);
 size_t	getCaseNumbers();
 int		getWidth();
 char	ft_lowercase_plus_index(unsigned int i, char c);
@@ -30,9 +34,6 @@ char	ft_tolower_wrapper(char c);
 void	linesBetweenCases(size_t newLines);
 void	ft_toupper_wrapper(char *c);
 void	ft_replace_with_i(unsigned int i, char *c);
-void	ft_print_content(t_list *elem);
-void	ft_print_list(t_list *list);
-void	ft_free_content(void *content, size_t content_size);
 
 char	ft_tolower_wrapper(char c) 
 {
@@ -136,67 +137,53 @@ size_t	getCaseNumbers(size_t startCase)
 	return (numberCases);
 }
 
-t_list	*ft_lst_toupper(t_list *elem)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	char	*new_str;
-	t_list	*node;
-	size_t	i = 0;
+	int	i;
 
-	new_str = ft_strdup(elem->content);
-	if (!new_str)
-		return (NULL);
-	while (new_str[i])
-	{
-    	new_str[i] = ft_toupper(new_str[i]);
-    	i++;
-	}
-	node = ft_lstnew(new_str, ft_strlen(new_str) + 1);
-	if (!node)
-	{
-		free(new_str);
-		return (NULL);
-	}
-	return (node);
+	i = 0;
+	while (s1[i] == s2[i] && s1[i])
+		i++;
+	return (s1[i] - s2[i]);
 }
 
-void	ft_print_content(t_list *elem)
+void	ft_strclr(char *s)
 {
-	printf("  Content: %s\n", (char *)elem->content);
+	if (!s)
+		return ;
+	while (*s)
+		*s++ = '\0';
 }
 
-void	ft_free_content(void *content, size_t content_size)
-{	
-	(void)content_size;
-	free(content);
-}
-
-void	ft_print_list(t_list *list)
+char	*ft_strcpy(char *dest, const char *src)
 {
-	t_list *current = list;
-	size_t	i = 1;
-	size_t	len;
+	int	i;
 
-	printf("  List| Content       | Size  | Next Address\n");
-	printf("  ----|---------------|-------|----------------\n");
-	while (current != NULL)
+	i = 0;
+	while (src[i])
 	{
-		printf("    %lu |", i);
-		len = ft_strlen((char *)current->content);
-		printf(" %s", (char *)current->content);
-		if (len < 8)
-			printf("\t      |");
-		else if (len < 10)
-			printf("     |");
-		else
-			printf("   |");
-		if (len < 8)
-			printf("   %lu   |", current->content_size);
-		else
-			printf("   %lu  |", current->content_size);
-		printf(" %p\n", (void *)current->next);
-		current = current->next;
+		dest[i] = src[i];
 		i++;
 	}
+	dest[i] = '\0';
+	return (dest);
+}
+
+void	*ft_memalloc(size_t size)
+{
+	void	*ptr;
+
+	ptr = malloc(size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, size);
+	return (ptr);
+}
+
+void	ft_putstr(char const *s)
+{
+	while (*s)
+		write(1, s++, 1);
 }
 
 #endif

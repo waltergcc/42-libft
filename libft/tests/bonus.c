@@ -6,12 +6,13 @@
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:19:27 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/03/24 00:19:48 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/04/12 23:23:11 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "tests.h"
+#include "bonus.h"
 
 int	main(void)
 {
