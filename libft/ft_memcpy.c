@@ -6,7 +6,7 @@
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:07:24 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/03/18 18:46:31 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/04/13 23:22:27 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	unsigned char	*pdest;
 	unsigned char	*psrc;
 
+	if (!dest && !src)
+		return (NULL);
 	pdest = (unsigned char *)dest;
 	psrc = (unsigned char *)src;
 	while (n--)

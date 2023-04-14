@@ -6,7 +6,7 @@
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:03:48 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/03/18 17:18:03 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/04/13 23:24:33 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	char		*pdest;
 	const char	*psrc;
 
+	if (!dest && !src)
+		return (NULL);
 	pdest = dest;
 	psrc = src;
 	if (pdest < psrc)

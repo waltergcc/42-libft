@@ -1,3 +1,14 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/04/14 01:34:02 by wcorrea-          #+#    #+#              #
+#    Updated: 2023/04/14 01:51:56 by wcorrea-         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 NAME = libft.a
 
@@ -14,16 +25,10 @@ PART2 = ft_itoa.c ft_strjoin.c ft_split.c ft_striteri.c \
 BONUS = ft_lstnew.c ft_lstadd.c ft_lstdelone.c ft_lstdel.c \
 		ft_lstiter.c ft_lstmap.c
 
-T1 = tests/part1.c
-T2 = tests/part2.c
-T3 = tests/bonus.c
-
 SRC = ${PART1} ${PART2}
 
 OBJS = ${SRC:.c=.o}
 BONUS_OBJS = ${BONUS:.c=.o}
-
-HEADER = libft.h
 
 CC = gcc
 RM = rm -f
@@ -38,25 +43,29 @@ $(NAME): ${OBJS}
 
 all:	${NAME}
 
-bonus:	$(OBJS) $(BONUS_OBJS)
-		ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+bonus:	${OBJS} ${BONUS_OBJS}
+		ar rcs ${NAME} ${OBJS} ${BONUS_OBJS}
 
 clean:
-		${RM} ${OBJS} $(BONUS_OBJS)
+		${RM} ${OBJS} ${BONUS_OBJS}
 
 fclean: clean
 		${RM} ${NAME}
 
 re: fclean all
 
+.PHONY: all clean fclean re tests tclean
+
+T1 = ../tests/part1.c
+T2 = ../tests/part2.c
+T3 = ../tests/bonus.c
+
 tests:
 		${CC} ${CFLAGS} ${INCLUDE} ${T1} ${NAME} -o t1
 		${CC} ${CFLAGS} ${INCLUDE} ${T2} ${NAME} -o t2
 
-tbonus:
+tbonus:	tests
 		${CC} ${CFLAGS} ${INCLUDE} ${T3} ${NAME} -o t3
 
-tclean:
-		rm t1 t2 t3
-
-.PHONY: all clean fclean re tests tclean
+tclean:	fclean
+		${RM} t1 t2 t3

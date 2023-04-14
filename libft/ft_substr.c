@@ -6,7 +6,7 @@
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 22:09:54 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/04/13 18:14:24 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/04/13 23:45:55 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,23 @@
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*substr;
+	size_t	str_size;
 
-	if (!s || start > ft_strlen(s))
+	if (!s)
 		return (NULL);
-	substr = (char *)malloc((len + 1) * sizeof(char));
+	str_size = ft_strlen(s);
+	if (str_size < start)
+	{
+		substr = (char *)malloc(sizeof(char) * 1);
+		if (!substr)
+			return (NULL);
+		substr[0] = '\0';
+		return (substr);
+	}
+	substr = (char *)malloc(sizeof(char) * (len + 1));
 	if (!substr)
 		return (NULL);
-	memcpy(substr, s + start, len);
+	ft_memcpy(substr, s + start, len);
 	substr[len] = '\0';
 	return (substr);
 }

@@ -19,8 +19,8 @@ PART I
 - [x] strdup
 - [x] atoi
 - [x] strncmp
-- [x] strchr - need correction
-- [x] strrchr - need correction
+- [x] strchr
+- [x] strrchr
 - [x] strlcpy
 - [x] calloc
 

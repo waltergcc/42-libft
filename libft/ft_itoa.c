@@ -6,7 +6,7 @@
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:47:13 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/04/13 02:22:40 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/04/14 00:16:59 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,8 @@ static int	ft_decimal_places(long n)
 	return (i);
 }
 
-static char	*ft_memalloc(int size)
+static char	*mount_str(char *str, long l, int i)
 {
-	char	*str;
-
-	str = (char *)malloc(sizeof(char) * (size + 1));
-	if ((!str))
-		return (NULL);
-	return (str);
-}
-
-char	*ft_itoa(int n)
-{
-	char		*str;
-	int			i;
-	long		l;
-
-	l = n;
-	i = ft_decimal_places(l);
-	str = ft_memalloc(i);
-	str[i--] = '\0';
 	if (l == 0)
 	{
 		str[0] = '0';
@@ -66,4 +48,19 @@ char	*ft_itoa(int n)
 		l /= 10;
 	}
 	return (str);
+}
+
+char	*ft_itoa(int n)
+{
+	char		*str;
+	int			i;
+	long		l;
+
+	l = n;
+	i = ft_decimal_places(l);
+	str = (char *)malloc(sizeof(char) * (i + 1));
+	if ((!str))
+		return (NULL);
+	str[i--] = '\0';
+	return (mount_str(str, l, i));
 }

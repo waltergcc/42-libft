@@ -6,7 +6,7 @@
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 08:16:40 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/04/13 18:03:05 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/04/14 01:35:19 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	ft_count_words(const char *s, char c)
 			words++;
 			while (s[i] && s[i] != c)
 				i++;
-		}
+		}	
 		else
 			i++;
 	}
@@ -41,7 +41,7 @@ static char	*word_splitter(const char *s, char c)
 	i = 0;
 	while (s[i] && s[i] != c)
 		i++;
-	word = (char *) malloc(sizeof(char *) * (i + 1));
+	word = (char *) malloc(sizeof(char) * (i + 1));
 	if (word == NULL)
 		return (NULL);
 	i = 0;
@@ -63,7 +63,7 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	j = 0;
 	words = (char **) malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
-	if (!words || !s || !c)
+	if (!words || !s)
 		return (NULL);
 	while (s[i])
 	{
