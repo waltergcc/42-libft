@@ -6,7 +6,7 @@
 #    By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/14 01:34:02 by wcorrea-          #+#    #+#              #
-#    Updated: 2023/04/14 12:45:32 by wcorrea-         ###   ########.fr        #
+#    Updated: 2023/04/14 17:06:29 by wcorrea-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,13 +54,13 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re tests tclean
+.PHONY: all clean fclean re
 
 T1 = ../tests/part1.c
 T2 = ../tests/part2.c
 T3 = ../tests/bonus.c
 
-tests:
+tests:	
 		${CC} ${CFLAGS} ${INCLUDE} ${T1} ${NAME} -o t1
 		${CC} ${CFLAGS} ${INCLUDE} ${T2} ${NAME} -o t2
 

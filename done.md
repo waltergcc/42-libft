@@ -49,3 +49,15 @@ BONUS
 - [x] lstmap
 - [x] lstsize
 - [x] lstlast
+
+MAIN ADJUSTS
+
+- [x] lstnew
+- [x] lstadd_front
+- [x] lstadd_back
+- [x] lstiter
+- [ ] lstsize
+- [ ] lstlast
+- [ ] lstmap
+- [ ] lstdelone
+- [ ] lstclear

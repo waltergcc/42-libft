@@ -4,9 +4,11 @@
 #include "libft.h"
 
 t_list	*ft_lst_toupper(t_list *elem);
-void	ft_print_content(t_list *elem);
+void	ft_print_content(void *elem);
 void	ft_print_list(t_list *list);
-void	ft_free_content(void *content, size_t content_size);
+void	ft_free_content(void *content);
+void	*ft_toupper_aux(void *elem);
+
 
 t_list	*ft_lst_toupper(t_list *elem)
 {
@@ -22,7 +24,7 @@ t_list	*ft_lst_toupper(t_list *elem)
     	new_str[i] = ft_toupper(new_str[i]);
     	i++;
 	}
-	node = ft_lstnew(new_str, ft_strlen(new_str) + 1);
+	node = ft_lstnew(new_str);
 	if (!node)
 	{
 		free(new_str);
@@ -31,14 +33,18 @@ t_list	*ft_lst_toupper(t_list *elem)
 	return (node);
 }
 
-void	ft_print_content(t_list *elem)
+void	*ft_toupper_aux(void *elem)
 {
-	printf("  Content: %s\n", (char *)elem->content);
+	return (ft_lst_toupper((t_list *)elem));
 }
 
-void	ft_free_content(void *content, size_t content_size)
+void	ft_print_content(void *elem)
+{
+		printf("  Content: %s\n", (char *)elem);
+}
+
+void	ft_free_content(void *content)
 {	
-	(void)content_size;
 	free(content);
 }
 
@@ -48,8 +54,8 @@ void	ft_print_list(t_list *list)
 	size_t	i = 1;
 	size_t	len;
 
-	printf("  List| Content       | Size  | Next Address\n");
-	printf("  ----|---------------|-------|----------------\n");
+	printf("  List| Content       | Next Address\n");
+	printf("  ----|---------------|----------------\n");
 	while (current != NULL)
 	{
 		printf("    %lu |", i);
@@ -61,10 +67,10 @@ void	ft_print_list(t_list *list)
 			printf("     |");
 		else
 			printf("   |");
-		if (len < 8)
-			printf("   %lu   |", current->content_size);
+/* 		if (len < 8)
+			printf("   %lu   |", current->content);
 		else
-			printf("   %lu  |", current->content_size);
+			printf("   %lu  |", current->content); */
 		printf(" %p\n", (void *)current->next);
 		current = current->next;
 		i++;
