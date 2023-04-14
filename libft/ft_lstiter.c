@@ -6,19 +6,19 @@
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 21:57:50 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/03/20 22:01:04 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/04/14 12:23:50 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	if (lst && f)
 	{
 		while (lst)
 		{
-			f(lst);
+			f(lst->content);
 			lst = lst->next;
 		}
 	}

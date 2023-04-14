@@ -40,21 +40,12 @@ Part II
 
 BONUS
 
-Need refactoration
-- [ ] lstnew
-- [ ] lstmap
-- [ ] lstdelone
-- [ ] lstiter
-- [ ] lstadd_front
-- [ ] lstclear
-
-Missing
-- [ ] lstadd_back
-- [ ] lstsize
-- [ ] lstlast
-
-Tests to run on libft
-- [ ] libft-war-machine
-- [ ] libft-unit-test
-- [ ] libftTester
-- [ ] fsoares
+- [x] lstnew
+- [x] lstadd_front
+- [x] lstadd_back
+- [x] lstdelone
+- [x] lstclear
+- [x] lstiter
+- [x] lstmap
+- [x] lstsize
+- [x] lstlast

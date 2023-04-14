@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:49:11 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/03/21 00:20:59 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/04/14 11:42:45 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	if (alst != NULL && new != NULL)
+	t_list	*curr;
+
+	if (!lst || !new)
+		return ;
+	if (!*lst)
+		*lst = new;
+	else
 	{
-		new->next = *alst;
-		*alst = new;
+		curr = *lst;
+		while (curr->next)
+			curr = curr->next;
+		curr->next = new;
 	}
 }

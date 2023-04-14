@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 21:35:12 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/03/21 00:20:40 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/04/14 12:15:55 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+void ft_lstclear(t_list **lst, void (*del)(void*))
 {
 	t_list	*next;
 	t_list	*current;
 
-	if (alst && del)
+	if (lst && del)
 	{
-		current = *alst;
+		current = *lst;
 		while (current)
 		{
 			next = current->next;
-			del(current->content, current->content_size);
+			del(current->content);
 			free(current);
 			current = next;
 		}
-		*alst = NULL;
+		*lst = NULL;
 	}
 }
