@@ -6,7 +6,7 @@
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 22:08:17 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/04/14 12:30:49 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/04/14 21:09:54 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		new_node = ft_lstnew(f(lst->content));
 		if (!new_node)
 		{
-			ft_lstclear(&new_lst, del);	
+			ft_lstclear(&new_lst, del);
 			return (NULL);
 		}
 		ft_lstadd_back(&new_lst, new_node);

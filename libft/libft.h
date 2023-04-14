@@ -6,7 +6,7 @@
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:31 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/04/14 12:46:05 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/04/14 21:10:44 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strequ(char const *s1, char const *s2);
 int		ft_strnequ(char const *s1, char const *s2, size_t n);
 int		ft_lstsize(t_list *lst);
-
 
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcat(char *dest, const char *src, size_t size);

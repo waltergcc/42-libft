@@ -6,7 +6,7 @@
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 22:09:54 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/04/13 23:45:55 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/04/14 22:55:54 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		substr[0] = '\0';
 		return (substr);
 	}
+	if (len > str_size - start)
+		len = str_size - start;
 	substr = (char *)malloc(sizeof(char) * (len + 1));
 	if (!substr)
 		return (NULL);

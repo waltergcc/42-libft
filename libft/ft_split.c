@@ -6,7 +6,7 @@
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 08:16:40 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/04/14 01:35:19 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/04/15 00:12:36 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	*word_splitter(const char *s, char c)
 	while (s[i] && s[i] != c)
 		i++;
 	word = (char *) malloc(sizeof(char) * (i + 1));
-	if (word == NULL)
+	if (!word)
 		return (NULL);
 	i = 0;
 	while (s[i] && s[i] != c)

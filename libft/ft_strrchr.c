@@ -6,7 +6,7 @@
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:37:49 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/04/13 03:27:12 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/04/14 23:38:50 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ char	*ft_strrchr(const char *s, int c)
 	last = NULL;
 	while (*s)
 	{
-		if (*s == c)
+		if (*(unsigned char *)s == (unsigned char)c)
 			last = ((char *)s);
 		s++;
 	}
-	if (c == 0)
+	if (*(unsigned char *)s == (unsigned char)c)
 		return ((char *)s);
 	return (last);
 }
