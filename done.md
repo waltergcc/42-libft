@@ -52,3 +52,9 @@ Missing
 - [ ] lstadd_back
 - [ ] lstsize
 - [ ] lstlast
+
+Tests to run on libft
+- [ ] libft-war-machine
+- [ ] libft-unit-test
+- [ ] libftTester
+- [ ] fsoares
