@@ -6,7 +6,7 @@
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:19:27 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/04/15 02:17:42 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/04/15 11:33:49 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	main(void)
 	printf("  Target: Create a new list iterating with %sft_lst_toupper%s\n\n", BLU, GRN);
 	newList = ft_lstmap(list[0], &ft_lst_toupper, &ft_free_content);
 	if (!newList)
-		return (1);
+		return (0);
 	current = newList;
 	while (current)
 	{
