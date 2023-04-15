@@ -6,7 +6,7 @@
 /*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:19:27 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/04/14 17:58:30 by wcorrea-         ###   ########.fr       */
+/*   Updated: 2023/04/15 02:17:42 by wcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(void)
 {
 	t_list	*list[9];
 	t_list	*list2[9];
-	// t_list	*newList;
+	t_list	*newList;
 	t_list	*current;
 	t_list	*previous = NULL;
 	char	strs[9][20] ={"Programming", "languages", "like", "Python", "Java", "and", "C++", "are", "used"};
@@ -86,39 +86,47 @@ int	main(void)
 	ft_lstiter(list[0], &ft_print_content);
 	linesBetweenCases(newlinesBetween);
 
-
-/*
 	if (!printAll)
 		PressKeyReadControl(&printAll);
 	// lstmap
 	insertHeadline("lstmap", subjectsLine, newlinesBefore, newlinesAfter);
 	printf("  Target: Create a new list iterating with %sft_lst_toupper%s\n\n", BLU, GRN);
-	newList = ft_lstmap(list[0], &ft_toupper_aux, &ft_free_content);
+	newList = ft_lstmap(list[0], &ft_lst_toupper, &ft_free_content);
 	if (!newList)
-	{
-		printf("Error: Failed to create new list.\n");
 		return (1);
-	}
 	current = newList;
 	while (current)
 	{
-		ft_print_content(current);
+		ft_print_content(current->content);
 		current = current->next;
 	}
 	linesBetweenCases(newlinesBetween);
-	// ft_lstclear(&list[0], &ft_free_content);
 
+	if (!printAll)
+		PressKeyReadControl(&printAll);
+	// lstsize
+	insertHeadline("lstsize", subjectsLine, newlinesBefore, newlinesAfter);
+	printf("  Target: Size of list %s%s%s\n\n", BLU, (char*)newList->content, GRN);
+	printf("    Size: %d", ft_lstsize(newList));
+	linesBetweenCases(newlinesBetween);
 
+	PressKeyReadControl(&printAll);
+	// lstlast
+	insertHeadline("lstlast", subjectsLine, newlinesBefore, newlinesAfter);
+	printf("  Target: Return the last node of list %s%s%s\n\n", BLU, (char *)newList->content, GRN);
+	ft_print_list(ft_lstlast(newList));
+	linesBetweenCases(newlinesBetween);
+	
 	if (!printAll)
 		PressKeyReadControl(&printAll);
 	// lstdelone
 	insertHeadline("lstdelone", subjectsLine, newlinesBefore, newlinesAfter);
 	printf("  Target: Delete the node of postion %s%lu%s\n", BLU, numberCases, STD);
 	printf("\n  List before:\n\n");
-	ft_print_list(list2[0]);
-	if (list2[0] != NULL)
+	ft_print_list(newList);
+	if (newList)
 	{
-		current = list2[0];
+		current = newList;
 		while (current->next != NULL)
 		{
 			previous = current;
@@ -129,18 +137,20 @@ int	main(void)
 		ft_lstdelone(current, &ft_free_content);
 	}
 	printf("\n%s  List after:\n\n", GRN);
-	ft_print_list(list2[0]);
+	ft_print_list(newList);
 	linesBetweenCases(newlinesBetween);
 
-	// lstdel
-	insertHeadline("lstdel", subjectsLine, newlinesBefore, newlinesAfter);
+	if (!printAll)
+		PressKeyReadControl(&printAll);
+	// lstclear
+	insertHeadline("lstclear", subjectsLine, newlinesBefore, newlinesAfter);
 	printf("  Target: Delete all linked list\n");
 	printf("\n  List before:\n\n");
 	ft_print_list(newList);
-	ft_lstdel(&newList, &ft_free_content);
+	ft_lstclear(&newList, &ft_free_content);
 	printf("\n%s  List after: ", GRN);
 	printf("%p\n", (void *)newList);
-	linesBetweenCases(newlinesBetween); */
+	linesBetweenCases(newlinesBetween);
 
 	insertHeadline("END", startEndLine, 0, 1);
 }

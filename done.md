@@ -1,5 +1,3 @@
-PART I
-
 - [x] isalpha
 - [x] isdigit
 - [x] isalnum
@@ -10,54 +8,38 @@ PART I
 - [x] bzero
 - [x] memcpy
 - [x] memmove
+- [x] strlcpy
 - [x] strlcat
 - [x] toupper
 - [x] tolower
+- [x] strchr
+- [x] strrchr
+- [x] strncmp
 - [x] memchr
 - [x] memcmp
 - [x] strnstr
-- [x] strdup
 - [x] atoi
-- [x] strncmp
-- [x] strchr
-- [x] strrchr
-- [x] strlcpy
 - [x] calloc
+- [x] strdup
 
-Part II
-
+- [x] substr
+- [x] strjoin
+- [x] strtrim
+- [x] split
+- [x] itoa
 - [x] strmapi
 - [x] striteri
 - [x] putchar_fd
 - [x] putstr_fd
 - [x] putendl_fd
 - [x] putnbr_fd
-- [x] strjoin
-- [x] itoa
-- [x] strtrim
-- [x] substr
-- [x] split
-
-BONUS
 
 - [x] lstnew
 - [x] lstadd_front
+- [x] lstsize
+- [x] lstlast
 - [x] lstadd_back
 - [x] lstdelone
 - [x] lstclear
 - [x] lstiter
 - [x] lstmap
-- [x] lstsize
-- [x] lstlast
-
-MAIN ADJUSTS
-
-- [x] lstnew
-- [x] lstadd_front
-- [x] lstadd_back
-- [x] lstiter
-- [ ] lstsize
-- [ ] lstlast
-- [ ] lstmap
-- [ ] lstdelone
-- [ ] lstclear
