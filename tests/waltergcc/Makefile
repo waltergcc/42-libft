@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-LIBFT_PATH = ../../libft
+LIBFT_PATH = /nfs/homes/wcorrea-/workspace/submit/0-libft/clone
 
 NAME = ${LIBFT_PATH}/libft.a
 
