@@ -6,11 +6,11 @@
 #    By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/14 01:34:02 by wcorrea-          #+#    #+#              #
-#    Updated: 2023/04/16 14:41:27 by wcorrea-         ###   ########.fr        #
+#    Updated: 2023/04/18 00:44:01 by wcorrea-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-LIBFT_PATH = /nfs/homes/wcorrea-/workspace/submit/0-libft/clone
+LIBFT_PATH = ../../libft
 
 NAME = ${LIBFT_PATH}/libft.a
 
