@@ -1,6 +1,5 @@
 # libft
 
-## About the project
 This is the code for the libft library, a collection of custom-written C functions that are commonly used in many projects. The library includes functions for string manipulation, memory allocation, and linked list management, among others.
 
 The code is divided into three parts: PART1, PART2, and BONUS. Part 1 and Part 2 contains functions that are mandatory for the project. The bonus part contains linked functions plus the mandatory functions.
