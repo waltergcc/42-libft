@@ -21,4 +21,3 @@ The library is accompanied by a header file called libft.h, which contains proto
 - libftTester: https://github.com/Tripouille/libftTester
 - libft_file_checker: https://github.com/Nuno-Jesus/libft_file_checker
 
- 
